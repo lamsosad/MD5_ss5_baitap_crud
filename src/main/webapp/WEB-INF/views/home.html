@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Manager</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-radius: 20px;
+    }
+    th, td{
+      padding: 20px;
+    }
+    button{
+      padding: 10px;
+      border-radius: 20px;
+    }
+  </style>
+</head>
+<body>
+<h1>All Music</h1>
+<a href="/create"><button>Create Music</button></a><br>
+<table>
+  <tr>
+    <th>STT</th>
+    <th>Name Song</th>
+    <th>Name Singer</th>
+    <th>Song</th>
+    <th colspan="2">Action</th>
+  </tr>
+
+  <tr th:each="m : ${music}">
+    <td th:text="${m.id}"></td>
+    <td th:text="${m.nameSong}"></td>
+    <td th:text="${m.nameSinger}"></td>
+    <td>
+      <audio th:src="@{'/audio/' + ${m.song}}" controls autoplay></audio>
+    </td>
+    <td><a href="">
+      <button style="background-color: orange">Edit</button>
+    </a></td>
+    <td><a th:href="@{|/delete/${m.getId()}|}">
+      <button style="background-color: red">Delete</button>
+    </a></td>
+
+  </tr>
+
+
+</table>
+<audio th:src="@{'D:\MD5\ss5_baithuchanh\src\main\resources\audioMusic\herhe.mp3'}" controls autoplay></audio>
+</body>
+</html>
